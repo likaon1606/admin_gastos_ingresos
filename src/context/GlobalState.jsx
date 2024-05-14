@@ -1,5 +1,6 @@
 import { createContext, useContext, useReducer } from 'react';
 import AppReducer from './AppReducer';
+import { type } from '@testing-library/user-event/dist/type';
 
 const initialState = {
   transactions: [],
@@ -15,10 +16,18 @@ export const useGlobalState = () => {
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
+  const addTransaction = (transaction) => {
+    dispatch({
+      type: 'ADD_TRANSACTION',
+      payload: transaction,
+    });
+  };
+
   return (
     <Context.Provider
       value={{
         transactions: state.transactions,
+        addTransaction,
       }}
     >
       {children}
