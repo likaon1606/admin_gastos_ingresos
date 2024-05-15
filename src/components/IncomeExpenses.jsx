@@ -12,7 +12,6 @@ const IncomeExpenses = () => {
   const expense =
     amounts.filter((item) => item < 0).reduce((acc, item) => (acc += item), 0) *
     -1;
-  console.log(expense);
 
   return (
     <>
