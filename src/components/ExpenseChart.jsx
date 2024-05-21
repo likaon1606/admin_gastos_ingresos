@@ -4,19 +4,27 @@ import { useGlobalState } from '../context/GlobalState';
 const ExpenseChart = () => {
   const { transactions } = useGlobalState();
 
-  const total = transactions.reduce(
-    (acc, transaction) => (acc += transaction.amount),
-    0
+  const totalIncome = transactions
+    .filter((transaction) => transaction.amount > 0)
+    .reduce((acc, transaction) => (acc += transaction.amount), 0);
+
+  const totalExpense =
+    transactions
+      .filter((transaction) => transaction.amount < 0)
+      .reduce((acc, transaction) => (acc += transaction.amount), 0) * -1;
+
+  const totalExpensesPercentage = Math.round(
+    (totalExpense / totalIncome) * 100
   );
 
-  console.log(total);
+  const totalIncomePercentage = 100 - totalExpensesPercentage;
 
   return (
     <VictoryPie
       colorScale={['#e74c13', '#2ecc71']}
       data={[
-        { x: 'Expenses', y: '35' },
-        { x: 'Incomes', y: '40' },
+        { x: 'Expenses', y: totalExpensesPercentage },
+        { x: 'Incomes', y: totalIncomePercentage },
       ]}
       animate={{
         duration: 200,
