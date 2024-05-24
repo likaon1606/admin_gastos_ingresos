@@ -21,7 +21,7 @@ const ExpenseChart = () => {
 
   return (
     <VictoryPie
-      colorScale={['#e74c13', '#2ecc71']}
+      colorScale={['yellow', 'purple']}
       data={[
         { x: 'Expenses', y: totalExpensesPercentage },
         { x: 'Incomes', y: totalIncomePercentage },

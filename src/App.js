@@ -14,7 +14,7 @@ function App() {
           <div className='container mx-auto w-3/6'>
             <div className='bg-zinc-800 p-10 rounded-lg flex gap-x-2'>
               <div>
-                <h1 className='text-4x1 font-bold'>Expense Tracker</h1>{' '}
+                <h1 className='text-4x1 font-bold'>Control de gastos</h1>{' '}
                 <IncomeExpenses />
                 <Balance />
                 <TransactionForm />
