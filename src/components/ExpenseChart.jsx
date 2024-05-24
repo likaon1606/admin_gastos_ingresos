@@ -1,34 +1,23 @@
-import React, { useState, useEffect } from 'react';
 import { VictoryPie, VictoryLabel } from 'victory';
 import { useGlobalState } from '../context/GlobalState';
 
 const ExpenseChart = () => {
   const { transactions } = useGlobalState();
-  const [totalExpensesPercentage, setTotalExpensesPercentage] = useState(0);
-  const [totalIncomePercentage, setTotalIncomePercentage] = useState(100);
 
-  useEffect(() => {
-    // Calcula el total de ingresos y gastos
-    const totalIncome = transactions
-      .filter((transaction) => transaction.amount > 0)
-      .reduce((acc, transaction) => (acc += transaction.amount), 0);
+  const totalIncome = transactions
+    .filter((transaction) => transaction.amount > 0)
+    .reduce((acc, transaction) => (acc += transaction.amount), 0);
 
-    const totalExpense =
-      transactions
-        .filter((transaction) => transaction.amount < 0)
-        .reduce((acc, transaction) => (acc += transaction.amount), 0) * -1;
+  const totalExpense =
+    transactions
+      .filter((transaction) => transaction.amount < 0)
+      .reduce((acc, transaction) => (acc += transaction.amount), 0) * -1;
 
-    // Calcula el porcentaje de gastos e ingresos
-    const totalExpensesPercentage = Math.round(
-      (totalExpense / (totalIncome + totalExpense)) * 100
-    );
+  const totalExpensesPercentage = Math.round(
+    (totalExpense / totalIncome) * 100
+  );
 
-    const totalIncomePercentage = 100 - totalExpensesPercentage;
-
-    // Actualiza los estados locales con los nuevos porcentajes
-    setTotalExpensesPercentage(totalExpensesPercentage);
-    setTotalIncomePercentage(totalIncomePercentage);
-  }, [transactions]);
+  const totalIncomePercentage = 100 - totalExpensesPercentage;
 
   return (
     <VictoryPie

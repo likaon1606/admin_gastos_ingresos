@@ -11,6 +11,7 @@ const TransactionForm = () => {
     addTransaction({
       id: window.crypto.randomUUID(),
       description,
+      amount: parseInt(amount),
     });
     setAmount(0);
     setDescription('');

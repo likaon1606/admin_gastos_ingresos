@@ -1,4 +1,4 @@
-const apredu = (state, action) => {
+const apred = (state, action) => {
   switch (action.type) {
     case 'ADD_TRANSACTION': //en caso de que sea verdadero
       return {
@@ -17,4 +17,4 @@ const apredu = (state, action) => {
   }
 };
 
-export default apredu;
+export default apred;
