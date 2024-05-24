@@ -1,4 +1,4 @@
-export default (state, action) => {
+const apredu = (state, action) => {
   switch (action.type) {
     case 'ADD_TRANSACTION': //en caso de que sea verdadero
       return {
@@ -16,3 +16,5 @@ export default (state, action) => {
       return state;
   }
 };
+
+export default apredu;
